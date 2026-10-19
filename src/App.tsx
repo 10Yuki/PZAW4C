@@ -10,7 +10,7 @@ interface Props_movie {
 function Showmovie({title, image_src, year}: Props_movie){
 return (
   <div>
-    <img src={image_src}/>
+    <img src={image_src} alt={`Okładka filmu ${title}`}/>
     <h4>{title}</h4>
     <p>{year}</p>
   </div>
@@ -31,7 +31,7 @@ interface Props_book {
 function Showbook({title, cover, year, numofpages}: Props_book){
 return (
   <div>
-    <img src={cover}/>
+    <img src={cover} alt={`Okładka książki ${title}`}/>
     <h4>{title}</h4>
     <p>{year}</p>
     <p>{numofpages}</p>
@@ -73,7 +73,7 @@ function Showalbum({ title, artist, genre, year, cover, tracks }: Props_album) {
     <div>
       <img src={cover} alt={`Okładka albumu ${title}`} />
       <h4>{title}</h4>
-      <p>{artist} • {genre} • {year}</p>
+      <p>{artist} - {genre} - {year}</p>
       <ul>
         {tracks.map((track) => (
           <Showsong key={track.title} title={track.title} duration={track.duration} />
