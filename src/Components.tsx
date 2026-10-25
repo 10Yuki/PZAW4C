@@ -5,6 +5,8 @@ export interface Props_movie {
   year: number;
   /** URL lub ścieżka do plakatu. */
   image_src: string;
+  /** Numer 1-10. */
+  rating: number;
 }
 
 interface movies {
