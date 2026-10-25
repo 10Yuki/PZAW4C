@@ -29,12 +29,15 @@ const songsalbum2: Props_song[] = [
   { title: "Road Trips", duration: "4:03" },
   { title: "Which One", duration: "2:49" },
   { title: "cos tam nie chce mi sie szukac wiecejv2", duration: "3:30" },
-
 ]
+const songsalbumtest: Props_song[] = [
+]
+
 
 const albums: Props_album[] = [
   { title : "Iceman", artist : "Drake", genre : "Hip-hop", year : 2026, cover : "https://upload.wikimedia.org/wikipedia/en/c/c6/Drake_-_Iceman.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original", tracks : songsalbum1 },
   { title: "MAID OF HONOUR", artist : "Drake", genre : "Hip-hop", year : 2026, cover : "https://upload.wikimedia.org/wikipedia/en/8/8e/Drake_-_Maid_of_Honour.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original", tracks : songsalbum2},
+  { title: "test", artist : "test", genre : "test", year : 2026, cover : "invalid", tracks : songsalbumtest},
 ]
 
 // sortowanie

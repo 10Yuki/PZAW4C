@@ -16,12 +16,19 @@ interface movies {
 function Showmovie({movies}: movies){
 return (
   <div>
-    {movies.map(m =>
-    <>
-    <img src={m.image_src} alt={`Okładka filmu ${m.title}`}/>
-    <h4>{m.title}</h4>
-    <p>{m.year}</p></>
-    )}
+    {movies.map(m => {
+      let label = "";
+      if(m.rating >= 8){
+        label = "Polecany";
+      }
+      return (
+        <>
+        <img src={m.image_src} alt={`Okładka filmu ${m.title}`}/>
+        <h4>{m.title} {label}</h4>
+        <p>{m.year}</p>
+        </>
+      );
+    })}
   </div>
   );
 }
@@ -39,10 +46,14 @@ export interface Props_book {
 }
 
 export function Showbook({title, cover, year, numofpages}: Props_book){
+  let label = "";
+  if(year<2000){
+    label = "Klasyka";
+  }
 return (
   <div>
     <img src={cover} alt={`Okładka książki ${title}`}/>
-    <h4>{title}</h4>
+    <h4>{title} {label}</h4>
     <p>{year}</p>
     <p>{numofpages}</p>
   </div>
@@ -80,16 +91,24 @@ export interface Props_album {
 }
 
 export function Showalbum({ title, artist, genre, year, cover, tracks }: Props_album) {
-  return (
-    <div>
-      <img src={cover} alt={`Okładka albumu ${title}`} />
-      <h4>{title}</h4>
-      <p>{artist} - {genre} - {year}</p>
+  let tracklist;
+  if (tracks.length === 0) {
+    tracklist = <p>Brak utworów</p>;
+  } else {
+    tracklist = (
       <ol>
         {tracks.map((track) => (
           <Showsong key={track.title} title={track.title} duration={track.duration} />
         ))}
       </ol>
+    );
+  }
+  return (
+    <div>
+      <img src={cover} alt={`Okładka albumu ${title}`} />
+      <h4>{title}</h4>
+      <p>{artist} - {genre} - {year}</p>
+      {tracklist}
     </div>
   );
 }
