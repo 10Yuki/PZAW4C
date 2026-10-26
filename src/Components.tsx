@@ -9,11 +9,11 @@ export interface Props_movie {
   rating: number;
 }
 
-interface movies {
+export interface movies {
     movies: Props_movie[]
 }
 
-function Showmovie({movies}: movies){
+export function Showmovie({movies}: movies){
 return (
   <div>
     {movies.map(m => {
@@ -32,7 +32,7 @@ return (
   </div>
   );
 }
-export default Showmovie;
+
 
 export interface Props_book {
   /** Tytuł książki. */

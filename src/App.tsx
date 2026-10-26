@@ -1,4 +1,4 @@
-import Showmovie, { Showbook, Showalbum } from "./Components";
+import {Showmovie, Showbook, Showalbum } from "./Components";
 import type { Props_movie, Props_book, Props_song, Props_album } from "./Components";
 
 const movies: Props_movie[] = [
