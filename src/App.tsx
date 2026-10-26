@@ -63,7 +63,8 @@ const longestAlbum = albums.reduce((best, a) => {
 
 function App() {
   return (
-    <div>
+    <div className="container">
+      
       <Section title="Filmy">
         <Showmovie movies={movies} />
       </Section>
@@ -85,7 +86,7 @@ function App() {
       </Section>
 
       <Section title="Albumy">
-        {albums.map((album) => (
+        {albums.map((album) => (    
           <Showalbum key={album.title} title={album.title} artist={album.artist} genre={album.genre} year={album.year} cover={album.cover} tracks={album.tracks} />
         ))}
       </Section>

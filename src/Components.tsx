@@ -18,7 +18,7 @@ export interface movies {
 
 export function Showmovie({movies}: movies){
 return (
-  <div>
+  <div className="card">
     {movies.map(m => {
       let label = "";
       if(m.rating >= 8){
@@ -54,7 +54,7 @@ export function Showbook({title, cover, year, numofpages}: Props_book){
     label = "Klasyka";
   }
 return (
-  <div>
+  <div className="card">
     <img src={cover} alt={`Okładka książki ${title}`}/>
     <h4>{title} {label}</h4>
     <p>{year}</p>
@@ -107,7 +107,7 @@ export function Showalbum({ title, artist, genre, year, cover, tracks }: Props_a
     );
   }
   return (
-    <div>
+    <div className="card">
       <img src={cover} alt={`Okładka albumu ${title}`} />
       <h4>{title}</h4>
       <p>{artist} - {genre} - {year}</p>
@@ -132,7 +132,7 @@ export function Section({title, children}: Props_section){
     content = children;
   }
   return (
-    <section>
+    <section className="">
       <h2 onClick={() => setIsOpen(!isOpen)}>{arrow} {title}</h2>
       {content}
     </section>
