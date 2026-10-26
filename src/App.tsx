@@ -74,25 +74,33 @@ function App() {
       </Section>
 
       <Section title="Książki">
-        {books.map((book) => (
-          <Showbook key={book.title} title={book.title} cover={book.cover} year={book.year} numofpages={book.numofpages} />
-        ))}
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          {books.map((book) => (
+            <Showbook key={book.title} title={book.title} cover={book.cover} year={book.year} numofpages={book.numofpages} />
+          ))}
+        </div>
       </Section>
 
       <Section title="Książki od najnowszej">
-        {booksByYear.map((book) => (
-          <Showbook key={book.title} title={book.title} cover={book.cover} year={book.year} numofpages={book.numofpages} />
-        ))}
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          {booksByYear.map((book) => (
+            <Showbook key={book.title} title={book.title} cover={book.cover} year={book.year} numofpages={book.numofpages} />
+          ))}
+        </div>
       </Section>
 
       <Section title="Albumy">
-        {albums.map((album) => (    
-          <Showalbum key={album.title} title={album.title} artist={album.artist} genre={album.genre} year={album.year} cover={album.cover} tracks={album.tracks} />
-        ))}
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          {albums.map((album) => (
+            <Showalbum key={album.title} title={album.title} artist={album.artist} genre={album.genre} year={album.year} cover={album.cover} tracks={album.tracks} />
+          ))}
+        </div>
       </Section>
 
       <Section title="Album z największą liczbą utworów">
-        <Showalbum title={longestAlbum.title} artist={longestAlbum.artist} genre={longestAlbum.genre} year={longestAlbum.year} cover={longestAlbum.cover} tracks={longestAlbum.tracks} />
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          <Showalbum title={longestAlbum.title} artist={longestAlbum.artist} genre={longestAlbum.genre} year={longestAlbum.year} cover={longestAlbum.cover} tracks={longestAlbum.tracks} />
+        </div>
       </Section>
 
     </div>

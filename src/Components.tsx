@@ -18,18 +18,22 @@ export interface movies {
 
 export function Showmovie({movies}: movies){
 return (
-  <div className="card">
+  <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
     {movies.map(m => {
       let label = "";
       if(m.rating >= 8){
         label = "Polecany";
       }
       return (
-        <>
-        <img src={m.image_src} alt={`Okładka filmu ${m.title}`}/>
-        <h4>{m.title} {label}</h4>
-        <p>{m.year}</p>
-        </>
+        <div className="col" key={m.title}>
+          <div className="card h-100">
+            <img className="card-img-top" style={{ height: "300px", objectFit: "cover" }} src={m.image_src} alt={`Okładka filmu ${m.title}`}/>
+            <div className="card-body">
+              <h5 className="card-title">{m.title} {label}</h5>
+              <p className="card-text">{m.year}</p>
+            </div>
+          </div>
+        </div>
       );
     })}
   </div>
@@ -54,11 +58,15 @@ export function Showbook({title, cover, year, numofpages}: Props_book){
     label = "Klasyka";
   }
 return (
-  <div className="card">
-    <img src={cover} alt={`Okładka książki ${title}`}/>
-    <h4>{title} {label}</h4>
-    <p>{year}</p>
-    <p>{numofpages}</p>
+  <div className="col">
+    <div className="card h-100">
+      <img className="card-img-top" style={{ height: "300px", objectFit: "cover" }} src={cover} alt={`Okładka książki ${title}`}/>
+      <div className="card-body">
+        <h5 className="card-title">{title} {label}</h5>
+        <p className="card-text">{year}</p>
+        <p className="card-text">{numofpages}</p>
+      </div>
+    </div>
   </div>
   );
 }
@@ -70,11 +78,18 @@ export interface Props_song {
   duration: string;
 }
 
-function Showsong({ title, duration }: Props_song) {
+interface Props_songrow extends Props_song {
+  /** Liczba porządkowa utworu na liście. */
+  position: number;
+}
+
+function Showsong({ position, title, duration }: Props_songrow) {
   return (
-    <li>
-      {title} ({duration})
-    </li>
+    <tr>
+      <td>{position}</td>
+      <td>{title}</td>
+      <td className="text-end">{duration}</td>
+    </tr>
   );
 }
 
@@ -96,22 +111,35 @@ export interface Props_album {
 export function Showalbum({ title, artist, genre, year, cover, tracks }: Props_album) {
   let tracklist;
   if (tracks.length === 0) {
-    tracklist = <p>Brak utworów</p>;
+    tracklist = <div className="alert alert-warning mb-0">Brak utworów</div>;
   } else {
     tracklist = (
-      <ol>
-        {tracks.map((track) => (
-          <Showsong key={track.title} title={track.title} duration={track.duration} />
-        ))}
-      </ol>
+      <table className="table table-striped table-hover mb-0">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Tytuł</th>
+            <th className="text-end">Czas</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tracks.map((track, index) => (
+            <Showsong key={track.title} position={index + 1} title={track.title} duration={track.duration} />
+          ))}
+        </tbody>
+      </table>
     );
   }
   return (
-    <div className="card">
-      <img src={cover} alt={`Okładka albumu ${title}`} />
-      <h4>{title}</h4>
-      <p>{artist} - {genre} - {year}</p>
-      {tracklist}
+    <div className="col">
+      <div className="card h-100">
+        <img className="card-img-top" style={{ height: "300px", objectFit: "cover" }} src={cover} alt={`Okładka albumu ${title}`} />
+        <div className="card-body">
+          <h5 className="card-title">{title}</h5>
+          <p className="card-text">{artist} - {genre} - {year}</p>
+          {tracklist}
+        </div>
+      </div>
     </div>
   );
 }
@@ -132,7 +160,7 @@ export function Section({title, children}: Props_section){
     content = children;
   }
   return (
-    <section className="">
+    <section className="mb-5">
       <h2 onClick={() => setIsOpen(!isOpen)}>{arrow} {title}</h2>
       {content}
     </section>
