@@ -117,7 +117,9 @@ export function Showalbum({ title, artist, genre, year, cover, tracks }: Props_a
 }
 
 export interface Props_section{
+  /** Tytuł sekcji. */
   title: string;
+  /** Treść sekcji. */
   children: ReactNode;
 }
 
