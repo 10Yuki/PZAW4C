@@ -58,7 +58,9 @@ const longestAlbum = albums.reduce((best, a) => {
   }
   return best;
 });
+
 // <Section></Section> to mozliwosc zawijania
+
 function App() {
   return (
     <div>
@@ -83,7 +85,6 @@ function App() {
       </Section>
 
       <Section title="Albumy">
-        <h2>Albumy</h2>
         {albums.map((album) => (
           <Showalbum key={album.title} title={album.title} artist={album.artist} genre={album.genre} year={album.year} cover={album.cover} tracks={album.tracks} />
         ))}
