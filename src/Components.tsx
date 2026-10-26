@@ -1,3 +1,6 @@
+import { useState } from "react";
+import type { ReactNode } from "react";
+
 export interface Props_movie {
   /** Tytuł filmu. */
   title: string;
@@ -110,5 +113,26 @@ export function Showalbum({ title, artist, genre, year, cover, tracks }: Props_a
       <p>{artist} - {genre} - {year}</p>
       {tracklist}
     </div>
+  );
+}
+
+export interface Props_section{
+  title: string;
+  children: ReactNode;
+}
+
+export function Section({title, children}: Props_section){
+  const [isOpen, setIsOpen] = useState(true);
+  let arrow = "⏵";
+  let content = null;
+  if (isOpen){
+    arrow = "⏷";
+    content = children;
+  }
+  return (
+    <section>
+      <h2 onClick={() => setIsOpen(!isOpen)}>{arrow} {title}</h2>
+      {content}
+    </section>
   );
 }

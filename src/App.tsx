@@ -1,21 +1,21 @@
-import {Showmovie, Showbook, Showalbum } from "./Components";
+import { Showmovie, Showbook, Showalbum, Section } from "./Components";
 import type { Props_movie, Props_book, Props_song, Props_album } from "./Components";
 
 const movies: Props_movie[] = [
-  { title : "Oppenheimer", year : 2023, image_src : "https://fwcdn.pl/fpo/28/17/10002817/8072064_2.10.webp", rating : 10},
-  { title: "Pingwiny z Madagaskaru", year : 2014, image_src : "https://fwcdn.pl/fpo/46/09/664609/7634915_1.10.webp", rating : 4},
-  { title: "Incepcja", year : 2010, image_src : "https://fwcdn.pl/fpo/08/91/500891/7354571_1.10.webp", rating : 10},
-  { title: "Matrix", year : 1999, image_src : "https://fwcdn.pl/fpo/06/28/628/7685907_1.10.webp", rating : 9},
-  { title: "Forrest Gump", year : 1994, image_src : "https://fwcdn.pl/fpo/09/98/998/8021615_1.10.webp", rating : 8},
-  { title: "Interstellar", year : 2014, image_src : "https://fwcdn.pl/fpo/56/29/375629/7670122_2.10.webp", rating : 9},
-  { title: "Parasite", year : 2019, image_src : "https://fwcdn.pl/fpo/81/43/798143/7895390_2.10.webp", rating : 6},
+  { title: "Oppenheimer", year: 2023, image_src: "https://fwcdn.pl/fpo/28/17/10002817/8072064_2.10.webp", rating: 10 },
+  { title: "Pingwiny z Madagaskaru", year: 2014, image_src: "https://fwcdn.pl/fpo/46/09/664609/7634915_1.10.webp", rating: 4 },
+  { title: "Incepcja", year: 2010, image_src: "https://fwcdn.pl/fpo/08/91/500891/7354571_1.10.webp", rating: 10 },
+  { title: "Matrix", year: 1999, image_src: "https://fwcdn.pl/fpo/06/28/628/7685907_1.10.webp", rating: 9 },
+  { title: "Forrest Gump", year: 1994, image_src: "https://fwcdn.pl/fpo/09/98/998/8021615_1.10.webp", rating: 8 },
+  { title: "Interstellar", year: 2014, image_src: "https://fwcdn.pl/fpo/56/29/375629/7670122_2.10.webp", rating: 9 },
+  { title: "Parasite", year: 2019, image_src: "https://fwcdn.pl/fpo/81/43/798143/7895390_2.10.webp", rating: 6 },
 ]
 
 
 const books: Props_book[] = [
-  { title : "W pustyni i w puszczy", cover : "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/W_pustyni_i_w_puszczy_1912.jpg/250px-W_pustyni_i_w_puszczy_1912.jpg?utm_source=pl.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", year : 2019, numofpages : 400 },
-  { title : "Lalka", cover : "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Lalka_-_strona_tytulowa_1_wydania.jpg/250px-Lalka_-_strona_tytulowa_1_wydania.jpg?utm_source=pl.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", year: 2025, numofpages : 120 },
-  { title: "Nela w krainie wulkanów", cover : "https://ksiazkineli.pl/wp-content/uploads/2025/12/Nela_w_krainie_wulkanow-600x781.jpg", year : 1890, numofpages : 1000}
+  { title: "W pustyni i w puszczy", cover: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/W_pustyni_i_w_puszczy_1912.jpg/250px-W_pustyni_i_w_puszczy_1912.jpg?utm_source=pl.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", year: 2019, numofpages: 400 },
+  { title: "Lalka", cover: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Lalka_-_strona_tytulowa_1_wydania.jpg/250px-Lalka_-_strona_tytulowa_1_wydania.jpg?utm_source=pl.wikipedia.org&utm_campaign=parser&utm_content=thumbnail", year: 2025, numofpages: 120 },
+  { title: "Nela w krainie wulkanów", cover: "https://ksiazkineli.pl/wp-content/uploads/2025/12/Nela_w_krainie_wulkanow-600x781.jpg", year: 1890, numofpages: 1000 }
 ]
 
 const songsalbum1: Props_song[] = [
@@ -35,9 +35,9 @@ const songsalbumtest: Props_song[] = [
 
 
 const albums: Props_album[] = [
-  { title : "Iceman", artist : "Drake", genre : "Hip-hop", year : 2026, cover : "https://upload.wikimedia.org/wikipedia/en/c/c6/Drake_-_Iceman.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original", tracks : songsalbum1 },
-  { title: "MAID OF HONOUR", artist : "Drake", genre : "Hip-hop", year : 2026, cover : "https://upload.wikimedia.org/wikipedia/en/8/8e/Drake_-_Maid_of_Honour.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original", tracks : songsalbum2},
-  { title: "test", artist : "test", genre : "test", year : 2026, cover : "invalid", tracks : songsalbumtest},
+  { title: "Iceman", artist: "Drake", genre: "Hip-hop", year: 2026, cover: "https://upload.wikimedia.org/wikipedia/en/c/c6/Drake_-_Iceman.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original", tracks: songsalbum1 },
+  { title: "MAID OF HONOUR", artist: "Drake", genre: "Hip-hop", year: 2026, cover: "https://upload.wikimedia.org/wikipedia/en/8/8e/Drake_-_Maid_of_Honour.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original", tracks: songsalbum2 },
+  { title: "test", artist: "test", genre: "test", year: 2026, cover: "invalid", tracks: songsalbumtest },
 ]
 
 // sortowanie
@@ -58,29 +58,41 @@ const longestAlbum = albums.reduce((best, a) => {
   }
   return best;
 });
-
-function App(){
-  return(
+// <Section></Section> to mozliwosc zawijania
+function App() {
+  return (
     <div>
-      <h2>Filmy</h2>
-      <Showmovie movies={movies}/>
-      <h2>Książki</h2>
-      {books.map((book) => (
-        <Showbook key={book.title} title={book.title} cover={book.cover} year={book.year} numofpages={book.numofpages} />
-      ))}
-      <h2>Albumy</h2>
-      {albums.map((album) => (
-        <Showalbum key={album.title} title={album.title} artist={album.artist} genre={album.genre} year={album.year} cover={album.cover} tracks={album.tracks} />
-      ))}
+      <Section title="Filmy">
+        <Showmovie movies={movies} />
+      </Section>
 
-      <h2>Filmy wydane po 2010</h2>
-      <Showmovie movies={moviesAfter2010}/>
-      <h2>Książki od najnowszej</h2>
-      {booksByYear.map((book) => (
-        <Showbook key={book.title} title={book.title} cover={book.cover} year={book.year} numofpages={book.numofpages} />
-      ))}
-      <h2>Album z największą liczbą utworów</h2>
-      <Showalbum title={longestAlbum.title} artist={longestAlbum.artist} genre={longestAlbum.genre} year={longestAlbum.year} cover={longestAlbum.cover} tracks={longestAlbum.tracks} />
+      <Section title="Filmy po 2010">
+        <Showmovie movies={moviesAfter2010} />
+      </Section>
+
+      <Section title="Książki">
+        {books.map((book) => (
+          <Showbook key={book.title} title={book.title} cover={book.cover} year={book.year} numofpages={book.numofpages} />
+        ))}
+      </Section>
+
+      <Section title="Książki od najnowszej">
+        {booksByYear.map((book) => (
+          <Showbook key={book.title} title={book.title} cover={book.cover} year={book.year} numofpages={book.numofpages} />
+        ))}
+      </Section>
+
+      <Section title="Albumy">
+        <h2>Albumy</h2>
+        {albums.map((album) => (
+          <Showalbum key={album.title} title={album.title} artist={album.artist} genre={album.genre} year={album.year} cover={album.cover} tracks={album.tracks} />
+        ))}
+      </Section>
+
+      <Section title="Album z największą liczbą utworów">
+        <Showalbum title={longestAlbum.title} artist={longestAlbum.artist} genre={longestAlbum.genre} year={longestAlbum.year} cover={longestAlbum.cover} tracks={longestAlbum.tracks} />
+      </Section>
+
     </div>
   );
 }
