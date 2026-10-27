@@ -13,30 +13,35 @@ export interface Props_movie {
 }
 
 export interface movies {
-    movies: Props_movie[]
+  movies: Props_movie[]
 }
 
-export function Showmovie({movies}: movies){
-return (
-  <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    {movies.map(m => {
-      let label = "";
-      if(m.rating >= 8){
-        label = "Polecany";
-      }
-      return (
-        <div className="col" key={m.title}>
-          <div className="card h-100">
-            <img className="card-img-top" style={{ height: "300px", objectFit: "cover" }} src={m.image_src} alt={`Okładka filmu ${m.title}`}/>
-            <div className="card-body">
-              <h5 className="card-title">{m.title} {label}</h5>
-              <p className="card-text">{m.year}</p>
+export function Showmovie({ movies }: movies) {
+  return (
+    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      {movies.map(m => {
+        let label = "";
+        if (m.rating >= 8) {
+          label = "Polecany";
+        }
+        return (
+          <article onClick={() => console.log(m.title)}>
+            <div className="col" key={m.title}>
+              <div className="card h-100">
+                <img className="card-img-top" style={{ height: "300px", objectFit: "cover" }} src={m.image_src} alt={`Okładka filmu ${m.title}`} />
+                <div className="card-body">
+                  <h5 className="card-title">{m.title} {label}</h5>
+                  <p className="card-text">{m.year}</p>
+                  <button onClick={(event) => {
+                    event.stopPropagation(); console.log("Pokaż szczegóły dla " + m.title);
+                  }}>Pokaż szczegóły</button>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      );
-    })}
-  </div>
+          </article>
+        );
+      })}
+    </div>
   );
 }
 
@@ -52,25 +57,27 @@ export interface Props_book {
   numofpages: number;
 }
 
-export function Showbook({title, cover, year, numofpages}: Props_book){
+export function Showbook({ title, cover, year, numofpages }: Props_book) {
   let label = "";
-  if(year<2000){
+  if (year < 2000) {
     label = "Klasyka";
   }
-return (
-  <div className="col">
-    <div className="card h-100">
-      <img className="card-img-top" style={{ height: "300px", objectFit: "cover" }} src={cover} alt={`Okładka książki ${title}`}/>
-      <div className="card-body">
-        <h5 className="card-title">{title} {label}</h5>
-        <p className="card-text">{year}</p>
-        <p className="card-text">{numofpages}</p>
+  return (
+    <div className="col">
+      <div className="card h-100">
+        <img className="card-img-top" style={{ height: "300px", objectFit: "cover" }} src={cover} alt={`Okładka książki ${title}`} />
+        <div className="card-body">
+          <h5 className="card-title">{title} {label}</h5>
+          <p className="card-text">{year}</p>
+          <p className="card-text">{numofpages}</p>
+        </div>
       </div>
     </div>
-  </div>
   );
 }
-
+function handleSongClick(albumtitle: string, songtitle: string) {
+  console.log("Wybrano utwór: " + songtitle + " z " + albumtitle)
+}
 export interface Props_song {
   /** Tytuł utworu. */
   title: string;
@@ -85,11 +92,11 @@ interface Props_songrow extends Props_song {
 
 function Showsong({ position, title, duration }: Props_songrow) {
   return (
-    <tr>
+    <>
       <td>{position}</td>
       <td>{title}</td>
       <td className="text-end">{duration}</td>
-    </tr>
+    </>
   );
 }
 
@@ -124,7 +131,9 @@ export function Showalbum({ title, artist, genre, year, cover, tracks }: Props_a
         </thead>
         <tbody>
           {tracks.map((track, index) => (
-            <Showsong key={track.title} position={index + 1} title={track.title} duration={track.duration} />
+            <tr onClick={() => handleSongClick(title, track.title)}>
+              <Showsong key={track.title} position={index + 1} title={track.title} duration={track.duration} />
+            </tr>
           ))}
         </tbody>
       </table>
@@ -144,18 +153,18 @@ export function Showalbum({ title, artist, genre, year, cover, tracks }: Props_a
   );
 }
 
-export interface Props_section{
+export interface Props_section {
   /** Tytuł sekcji. */
   title: string;
   /** Treść sekcji. */
   children: ReactNode;
 }
 
-export function Section({title, children}: Props_section){
+export function Section({ title, children }: Props_section) {
   const [isOpen, setIsOpen] = useState(true);
   let arrow = "⏵";
   let content = null;
-  if (isOpen){
+  if (isOpen) {
     arrow = "⏷";
     content = children;
   }

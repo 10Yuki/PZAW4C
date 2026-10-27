@@ -1,5 +1,6 @@
 import { Showmovie, Showbook, Showalbum, Section } from "./Components";
 import type { Props_movie, Props_book, Props_song, Props_album } from "./Components";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const movies: Props_movie[] = [
   { title: "Oppenheimer", year: 2023, image_src: "https://fwcdn.pl/fpo/28/17/10002817/8072064_2.10.webp", rating: 10 },
@@ -31,6 +32,7 @@ const songsalbum2: Props_song[] = [
   { title: "cos tam nie chce mi sie szukac wiecejv2", duration: "3:30" },
 ]
 const songsalbumtest: Props_song[] = [
+  { title: "cos tam nie chce mi sie szukac wiecej do testu", duration: "8:10" },
 ]
 
 
@@ -64,7 +66,7 @@ const longestAlbum = albums.reduce((best, a) => {
 function App() {
   return (
     <div className="container">
-      
+
       <Section title="Filmy">
         <Showmovie movies={movies} />
       </Section>
