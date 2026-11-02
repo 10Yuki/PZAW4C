@@ -1,6 +1,8 @@
 import { Showmovie, Showbook, Showalbum, Section } from "./Components";
 import type { Props_movie, Props_book, Props_song, Props_album } from "./Components";
+import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 
 const movies: Props_movie[] = [
   { title: "Oppenheimer", year: 2023, image_src: "https://fwcdn.pl/fpo/28/17/10002817/8072064_2.10.webp", rating: 10 },
@@ -64,11 +66,48 @@ const longestAlbum = albums.reduce((best, a) => {
 // <Section></Section> to mozliwosc zawijania
 
 function App() {
+
+  const [moviesearch, setmoviesearch] = useState("");
+  const [booksearch, setbooksearch] = useState("");
+  const [musicsearch, setmusicsearch] = useState("");
+
+
+  const filteredMovies = movies.filter((m) => {
+    if (m.title.toLowerCase().includes(moviesearch.toLowerCase())) {
+      return true;
+    }
+    return false;
+  });
+
+  let movieslist;
+  if (filteredMovies.length === 0) {
+    movieslist = <p>Nie znaleziono filmu.</p>
+  } else {
+    movieslist = (
+      <Showmovie movies={filteredMovies} />
+    );
+  }
+
   return (
     <div className="container">
 
       <Section title="Filmy">
-        <Showmovie movies={movies} />
+
+        <input
+          id="movie-search"
+          type="text"
+          value={moviesearch}
+          onChange={(event) => {
+            console.log(event.target.value);
+            setmoviesearch(event.target.value);
+          }}
+          className="form-control"
+          placeholder="Wpisz tytuł"
+        />
+        <p>Wpisano: {moviesearch}</p>
+
+        {movieslist}
+
       </Section>
 
       <Section title="Filmy po 2010">
@@ -76,6 +115,19 @@ function App() {
       </Section>
 
       <Section title="Książki">
+        <input
+          id="book-search"
+          type="text"
+          value={booksearch}
+          onChange={(event) => {
+            console.log(event.target.value);
+            setbooksearch(event.target.value);
+          }}
+          className="form-control"
+          placeholder="Wpisz tytuł"
+        />
+        <p>Wpisano: {booksearch}</p>
+
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
           {books.map((book) => (
             <Showbook key={book.title} title={book.title} cover={book.cover} year={book.year} numofpages={book.numofpages} />
@@ -92,6 +144,19 @@ function App() {
       </Section>
 
       <Section title="Albumy">
+        <input
+          id="album-search"
+          type="text"
+          value={musicsearch}
+          onChange={(event) => {
+            console.log(event.target.value);
+            setmusicsearch(event.target.value);
+          }}
+          className="form-control"
+          placeholder="Wpisz tytuł"
+        />
+        <p>Wpisano: {musicsearch}</p>
+
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
           {albums.map((album) => (
             <Showalbum key={album.title} title={album.title} artist={album.artist} genre={album.genre} year={album.year} cover={album.cover} tracks={album.tracks} />

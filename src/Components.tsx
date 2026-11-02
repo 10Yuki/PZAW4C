@@ -25,7 +25,7 @@ export function Showmovie({ movies }: movies) {
           label = "Polecany";
         }
         return (
-          <article onClick={() => console.log(m.title)}>
+          <article onClick={() => console.log("Wybrano film: " + m.title)}>
             <div className="col" key={m.title}>
               <div className="card h-100">
                 <img className="card-img-top" style={{ height: "300px", objectFit: "cover" }} src={m.image_src} alt={`Okładka filmu ${m.title}`} />
