@@ -1,177 +1,26 @@
-import { useState } from "react";
-import type { ReactNode } from "react";
-
-export interface Props_movie {
-  /** Tytuł filmu. */
+export interface Props_task {
+  id: number;
   title: string;
-  /** Rok wydania filmu. */
-  year: number;
-  /** URL lub ścieżka do plakatu. */
-  image_src: string;
-  /** Numer 1-10. */
-  rating: number;
+  task: string;
+  done: boolean;
 }
 
-export interface movies {
-  movies: Props_movie[]
+interface Props_showtask extends Props_task {
+  onToggle: (id: number) => void;
 }
 
-export function Showmovie({ movies }: movies) {
+export function Showtask({ id, title, task, done, onToggle }: Props_showtask) {
   return (
-    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      {movies.map(m => {
-        let label = "";
-        if (m.rating >= 8) {
-          label = "Polecany";
-        }
-        return (
-          <article onClick={() => console.log("Wybrano film: " + m.title)}>
-            <div className="col" key={m.title}>
-              <div className="card h-100">
-                <img className="card-img-top" style={{ height: "300px", objectFit: "cover" }} src={m.image_src} alt={`Okładka filmu ${m.title}`} />
-                <div className="card-body">
-                  <h5 className="card-title">{m.title} {label}</h5>
-                  <p className="card-text">{m.year}</p>
-                  <button onClick={(event) => {
-                    event.stopPropagation(); console.log("Pokaż szczegóły dla " + m.title);
-                  }}>Pokaż szczegóły</button>
-                </div>
-              </div>
-            </div>
-          </article>
-        );
-      })}
-    </div>
-  );
-}
-
-
-export interface Props_book {
-  /** Tytuł książki. */
-  title: string;
-  /** Rok wydania książki. */
-  year: number;
-  /** URL lub ścieżka do okładki. */
-  cover: string;
-  /** Liczba stron. */
-  numofpages: number;
-}
-
-export function Showbook({ title, cover, year, numofpages }: Props_book) {
-  let label = "";
-  if (year < 2000) {
-    label = "Klasyka";
-  }
-  return (
-    <div className="col">
-      <div className="card h-100">
-        <img className="card-img-top" style={{ height: "300px", objectFit: "cover" }} src={cover} alt={`Okładka książki ${title}`} />
-        <div className="card-body">
-          <h5 className="card-title">{title} {label}</h5>
-          <p className="card-text">{year}</p>
-          <p className="card-text">{numofpages}</p>
-        </div>
+    <li>
+      <input
+        type="checkbox"
+        checked={done}
+        onChange={() => onToggle(id)}
+      />
+      <div>
+        <h5>{title}</h5>
+        <p>{task}</p>
       </div>
-    </div>
-  );
-}
-function handleSongClick(albumtitle: string, songtitle: string) {
-  console.log("Wybrano utwór: " + songtitle + " z " + albumtitle)
-}
-export interface Props_song {
-  /** Tytuł utworu. */
-  title: string;
-  /** Czas trwania w formacie mm:ss. */
-  duration: string;
-}
-
-interface Props_songrow extends Props_song {
-  /** Liczba porządkowa utworu na liście. */
-  position: number;
-}
-
-function Showsong({ position, title, duration }: Props_songrow) {
-  return (
-    <>
-      <td>{position}</td>
-      <td>{title}</td>
-      <td className="text-end">{duration}</td>
-    </>
-  );
-}
-
-export interface Props_album {
-  /** Tytuł albumu. */
-  title: string;
-  /** Wykonawca lub zespół. */
-  artist: string;
-  /** Gatunek muzyczny. */
-  genre: string;
-  /** Rok wydania albumu. */
-  year: number;
-  /** URL lub ścieżka do okładki. */
-  cover: string;
-  /** Lista utworów albumu. */
-  tracks: Props_song[];
-}
-
-export function Showalbum({ title, artist, genre, year, cover, tracks }: Props_album) {
-  let tracklist;
-  if (tracks.length === 0) {
-    tracklist = <div className="alert alert-warning mb-0">Brak utworów</div>;
-  } else {
-    tracklist = (
-      <table className="table table-striped table-hover mb-0">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Tytuł</th>
-            <th className="text-end">Czas</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tracks.map((track, index) => (
-            <tr onClick={() => handleSongClick(title, track.title)}>
-              <Showsong key={track.title} position={index + 1} title={track.title} duration={track.duration} />
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    );
-  }
-  return (
-    <div className="col">
-      <div className="card h-100">
-        <img className="card-img-top" style={{ height: "300px", objectFit: "cover" }} src={cover} alt={`Okładka albumu ${title}`} />
-        <div className="card-body">
-          <h5 className="card-title">{title}</h5>
-          <p className="card-text">{artist} - {genre} - {year}</p>
-          {tracklist}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export interface Props_section {
-  /** Tytuł sekcji. */
-  title: string;
-  /** Treść sekcji. */
-  children: ReactNode;
-}
-
-export function Section({ title, children }: Props_section) {
-  const [isOpen, setIsOpen] = useState(true);
-  let arrow = "⏵";
-  let content = null;
-  if (isOpen) {
-    arrow = "⏷";
-    content = children;
-  }
-  return (
-    <section className="mb-5">
-      <h2 onClick={() => setIsOpen(!isOpen)}>{arrow} {title}</h2>
-      {content}
-    </section>
+    </li>
   );
 }
